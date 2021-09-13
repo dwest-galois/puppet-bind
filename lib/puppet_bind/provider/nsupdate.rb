@@ -161,6 +161,8 @@ module PuppetBind
         unless @query
           if keyed?
             dig_text = dig("@#{server}", '+noall', '+nosearch', '+norecurse', "+#{query_section}", name, type, '-c', rrclass, '-y', tsig_param)
+          elsif keyfile?
+            dig_text = dig("@#{server}", '+noall', '+nosearch', '+norecurse', "+#{query_section}", name, type, '-c', rrclass, '-k', kfile)
           else
             dig_text = dig("@#{server}", '+noall', '+nosearch', '+norecurse', "+#{query_section}", name, type, '-c', rrclass)
           end
